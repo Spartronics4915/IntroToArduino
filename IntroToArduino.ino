@@ -43,9 +43,8 @@ void loop()
     // Turn on the LED connected to the pin by providing voltage
     digitalWrite(LED_BUILTIN, HIGH);
 
-    // Turn on one NeoPixel
-    pixels.setPixelColor(0, pixels.Color(0, 150, 0));
-    pixels.show();
+    // Call a function to turn on the pixels
+    turn_on_pixels();
 
     // Wait for a short time based on the sensor value
     delay(sensorValue);
@@ -53,11 +52,24 @@ void loop()
     // Turn off the LED by turning off the voltage
     digitalWrite(LED_BUILTIN, LOW);
 
-    // Turn off the NeoPixel
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
-    pixels.show();
+    // Call a function to turn off the pixels
+    turn_off_pixels();
 
     // Wait for a short time based on the sensor value
     delay(sensorValue);
 
+}
+
+void turn_on_pixels()
+{
+    // Turn on one NeoPixel
+    pixels.setPixelColor(0, pixels.Color(0, 150, 0));
+    pixels.show();
+}
+
+void turn_off_pixels()
+{
+    // Turn off the NeoPixel
+    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    pixels.show();
 }
