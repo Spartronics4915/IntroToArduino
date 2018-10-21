@@ -31,6 +31,12 @@ void setup()
 
     // Initialize the pixels to get them ready for use
     pixels.begin();
+
+    // Make a rainbow to start, with the sensor for brightness
+    make_a_rainbow(analogRead(sensorPin) / 4);
+
+    // Pause to enjoy the rainbow
+    delay(3000);
 }
 
 void loop()
@@ -77,5 +83,19 @@ void turn_off_pixels()
     {
         pixels.setPixelColor(i, pixels.Color(0, 0, 0));
     }
+    pixels.show();
+}
+
+void make_a_rainbow(int brightness)
+{
+    // Set the NeoPixels to a rainbow of colors
+    pixels.setPixelColor(0, pixels.Color(brightness, 0, 0));
+    pixels.setPixelColor(1, pixels.Color(brightness, brightness, 0));
+    pixels.setPixelColor(2, pixels.Color(0, brightness, 0));
+    pixels.setPixelColor(3, pixels.Color(0, brightness, brightness));
+    pixels.setPixelColor(4, pixels.Color(0, 0, brightness));
+    pixels.setPixelColor(5, pixels.Color(brightness, 0, brightness));
+    pixels.setPixelColor(6, pixels.Color(brightness, brightness, brightness));
+    pixels.setPixelColor(7, pixels.Color(0, 0, 0));
     pixels.show();
 }
