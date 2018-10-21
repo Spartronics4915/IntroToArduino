@@ -22,12 +22,17 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMBER_OF_PIXELS, NEOPIXEL_PIN,
 int sensorPin = A0;     // A pin connected to a potentiomenter
 int sensorValue;        // A place to store the value from the potentiometer
 
+int buttonPin = 12;     // A pin connected to the button
+
 void setup()
 {
     // Code placed here will run one time when the Arduino is started
 
     // Configure the Arduino to make a pin output a voltage
     pinMode(LED_BUILTIN, OUTPUT);
+
+    // Configure the Arduino to make a pin an input for a button
+    pinMode(buttonPin, INPUT_PULLUP);
 
     // Initialize the pixels to get them ready for use
     pixels.begin();
@@ -46,14 +51,18 @@ void loop()
     // Read the voltage value on the sensor input pin
     sensorValue = analogRead(sensorPin);
 
-    // Turn on the LED connected to the pin by providing voltage
-    digitalWrite(LED_BUILTIN, HIGH);
+    // Only turn on the pixels if the button is pressed
+    if (digitalRead(buttonPin) == LOW)
+    {
+        // Turn on the LED connected to the pin by providing voltage
+        digitalWrite(LED_BUILTIN, HIGH);
 
-    // Call a function to turn on the pixels
-    turn_on_pixels();
+        // Call a function to turn on the pixels
+        turn_on_pixels();
 
-    // Wait for a short time based on the sensor value
-    delay(sensorValue);
+        // Wait for a short time based on the sensor value
+        delay(sensorValue);
+    }
 
     // Turn off the LED by turning off the voltage
     digitalWrite(LED_BUILTIN, LOW);
