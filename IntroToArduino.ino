@@ -62,14 +62,20 @@ void loop()
 
 void turn_on_pixels()
 {
-    // Turn on one NeoPixel
-    pixels.setPixelColor(0, pixels.Color(0, 150, 0));
+    // Turn on all the NeoPixels
+    for (int i=0; i<NUMBER_OF_PIXELS; i++)
+    {
+        pixels.setPixelColor(i, pixels.Color(0, 150, 0));
+    }
     pixels.show();
 }
 
 void turn_off_pixels()
 {
-    // Turn off the NeoPixel
-    pixels.setPixelColor(0, pixels.Color(0, 0, 0));
+    // Turn off all the NeoPixels
+    for (int i=0; i<NUMBER_OF_PIXELS; i++)
+    {
+        pixels.setPixelColor(i, pixels.Color(0, 0, 0));
+    }
     pixels.show();
 }
